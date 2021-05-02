@@ -6,11 +6,35 @@ using System.IO;
 public class MainCameraImageRecognition : MonoBehaviour
 {
 
-    public int fileCount = 0;
+    private int fileCount = 0;
+    private bool keepRunning = false;
 
-    private void LateUpdate()
+    void Start()
+    {
+        // Make the game run as fast as possible
+        Application.targetFrameRate = 300;
+    }
+
+    private void FixedUpdate()
     {
         if(Input.GetKeyDown("space"))
+        {
+            Debug.Log("SPACE");
+
+            if(!keepRunning)
+            {
+                keepRunning = true;
+                Debug.Log("START");
+            }
+
+            else
+            {
+                keepRunning = false;
+                Debug.Log("END");
+            }
+        }
+
+        if(keepRunning)
         {
             CamCapture();
             Debug.Log("Screenshot taken");
