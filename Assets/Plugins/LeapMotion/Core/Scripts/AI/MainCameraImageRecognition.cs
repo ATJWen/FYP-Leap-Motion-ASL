@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+using UnityEditor;
+using UnityEditor.Scripting.Python;
 
 public class MainCameraImageRecognition : MonoBehaviour
 {
@@ -40,26 +41,13 @@ public class MainCameraImageRecognition : MonoBehaviour
             Debug.Log("Screenshot taken");
         }
     }
-    void CamCapture(){
-        // Camera Cam = GetComponent<Camera>();
+    void CamCapture()
+    {
+        // ScreenCapture.CaptureScreenshot(Application.dataPath + "/Screenshots/" + fileCount + ".png");
+        // fileCount++;
 
-        // RenderTexture currentRT = RenderTexture.active;
-        // RenderTexture.active = Cam.targetTexture;
- 
-        // Cam.Render();
- 
-        // Texture2D Image = new Texture2D(Cam.targetTexture.width, Cam.targetTexture.height);
-        // Image.ReadPixels(new Rect(0, 0, Cam.targetTexture.width, Cam.targetTexture.height), 0, 0);
-        // Image.Apply();
-        // RenderTexture.active = currentRT;
-
-        // var Bytes = Image.EncodeToPNG();
-        // Destroy(Image);
- 
-        // File.WriteAllBytes(Application.dataPath + "/Screenshots/" + FileCounter + ".png", Bytes);
-        // FileCounter++;
-        ScreenCapture.CaptureScreenshot(Application.dataPath + "/Screenshots/" + fileCount + ".png");
-        fileCount++;
+        string path = Application.dataPath + "/Plugins/LeapMotion/Core/Scripts/Python_Scripts/test.py";
+        PythonRunner.RunFile(path);
     }
 
 }

@@ -24,7 +24,7 @@ namespace Leap.Unity {
     // private static int _rightColorIndex = 0;
     // private static Color[] _leftColorList = { new Color(0.0f, 0.0f, 1.0f), new Color(0.2f, 0.0f, 0.4f), new Color(0.0f, 0.2f, 0.2f) };
     // private static Color[] _rightColorList = { new Color(1.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), new Color(1.0f, 0.5f, 0.0f) };
-    private static Color _leftColor = new Color(1.0f, 0.0f, 0.0f);
+    private static Color _leftColor = new Color(0.0f, 0.0f, 1.0f);
     private static Color _rightColor = new Color(0.0f, 0.0f, 1.0f);
 
     #pragma warning disable 0649
