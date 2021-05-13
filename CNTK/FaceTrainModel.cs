@@ -15,11 +15,11 @@ class FaceTrainModel
 
         var projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../"));
         var workspaceRelativePath = Path.Combine(projectDirectory, "workspace");
-        var unityScreenshotsPathForTraining = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/Assets/Plugins/LeapMotion/Core/Screenshots";
+        var faceImagePath = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/CNTK/assets/";
 
         MLContext mlContext = new MLContext();
 
-        IEnumerable<ImageData> images = LoadImagesFromDirectory(folder: unityScreenshotsPathForTraining, useFolderNameAsLabel: true);
+        IEnumerable<ImageData> images = LoadImagesFromDirectory(folder: faceImagePath, useFolderNameAsLabel: true);
         IDataView imageData = mlContext.Data.LoadFromEnumerable(images);
         IDataView shuffledData = mlContext.Data.ShuffleRows(imageData);
 
@@ -28,7 +28,7 @@ class FaceTrainModel
                 outputColumnName: "LabelAsKey")
             .Append(mlContext.Transforms.LoadRawImageBytes(
                 outputColumnName: "Image",
-                imageFolder: unityScreenshotsPathForTraining,
+                imageFolder: faceImagePath,
                 inputColumnName: "ImagePath"));
 
         IDataView preProcessedData = preprocessingPipeline
@@ -62,7 +62,7 @@ class FaceTrainModel
         ClassifySingleImage(mlContext, testSet, trainedModel);
         ClassifyImages(mlContext, testSet, trainedModel);
 
-        // mlContext.Model.Save(trainedModel, trainSet.Schema, "facemodel.zip");
+        mlContext.Model.Save(trainedModel, trainSet.Schema, "facemodel.zip");
     }
 
     private static void OutputPrediction(ModelOutput prediction)

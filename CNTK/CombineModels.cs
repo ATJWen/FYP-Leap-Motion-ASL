@@ -4,41 +4,109 @@ using System.Threading;
 
 class CombineModels
 {
-    string word;
-    string emotion;
+    string word = "TEST";
+    string emotion = "happy";
+    SignLanguagInterpretor sli = new SignLanguagInterpretor();
+    EmotionRecognition er = new EmotionRecognition();
+
+
+    public void GetFaceFromWebcam()
+    {
+        LiveWebcam cam = new LiveWebcam();
+
+        while(true)
+        {
+            cam.start_webcam();
+        }
+    }
 
     public void GetWordFromInterpretor()
-    {
-        SignLanguagInterpretor sli = new SignLanguagInterpretor();
+    {       
 
         while(true)
         {
             sli.Interpret();                
-            word = sli.output_word;
-            Console.WriteLine(word);
         }
     }
 
     public void GetFacialExpression()
     {
-        int i = 0;
+        
+        while(true)
+        {
+            er.GetEmotion();
+        }
+    }
+
+    public void GetWordFromInterpretor_output()
+    {
+
+        while(true)
+        {            
+            word = sli.GetWordOutput();
+        }
+    }
+
+    public void GetFacialExpression_output()
+    {
 
         while(true)
         {
-            i++;
-            Console.WriteLine(i);
-            Thread.Sleep(10000);
+            emotion = er.GetEmotionOutput();
+        }
+    }
+
+    public void CombineModel()
+    {
+        while(true)
+        {
+            try
+            {
+                if(emotion == "neutral" && word != null)
+                {
+                    Console.WriteLine(word.ToLower());
+                }
+                else if (emotion == "happy" && word != null)
+                {
+                    Console.WriteLine(word);
+                }
+
+                else
+                {
+                    
+                }
+            } 
+            catch (InvalidOperationException e)
+            {
+                
+            }
         }
     }
 
     public void GenerateWord()
     {
+        // ThreadStart webcamthread = new ThreadStart(GetFaceFromWebcam);
+        // Thread wthread = new Thread(webcamthread);
+        // wthread.Start();
+
         ThreadStart signlanguagethread = new ThreadStart(GetWordFromInterpretor);
         Thread th1 = new Thread(signlanguagethread);
         th1.Start();
 
         ThreadStart facialexpressionthread = new ThreadStart(GetFacialExpression);
-        Thread t2 = new Thread(facialexpressionthread);
-        t2.Start();
+        Thread th2 = new Thread(facialexpressionthread);
+        th2.Start();
+
+        ThreadStart signlanguageoutputthread = new ThreadStart(GetWordFromInterpretor_output);
+        Thread th3 = new Thread(signlanguageoutputthread);
+        th3.Start();
+
+        ThreadStart facialexpressionoutputthread = new ThreadStart(GetFacialExpression_output);
+        Thread th4 = new Thread(facialexpressionoutputthread);
+        th4.Start();
+
+        ThreadStart modelthread = new ThreadStart(CombineModel);
+        Thread mth = new Thread(modelthread);
+        mth.Start();
     }
 }

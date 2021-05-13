@@ -51,17 +51,10 @@ class SignLanguagInterpretor
         string predictedword;
         while(true){
             predictedword = ClassifySingleImage(mlContext, testSet, trainedModel);
-            Console.WriteLine(predictedword);
+            // Console.WriteLine(predictedword);
             output_word = predictedword;
         }
     }
-
-    private static void OutputPrediction(ModelOutput prediction)
-    {
-        string imageName = Path.GetFileName(prediction.ImagePath);
-        Console.WriteLine($"Image: {imageName} | Actual Value: {prediction.Label} | Predicted Value: {prediction.PredictedLabel}");
-    }
-
     public static string ClassifySingleImage(MLContext mlContext, IDataView data, ITransformer trainedModel)
     {
         PredictionEngine<ModelInput, ModelOutput> predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(trainedModel);
@@ -104,6 +97,10 @@ class SignLanguagInterpretor
                 Label = label
             };
         }
+    }
+
+    public string GetWordOutput(){
+        return output_word;
     }
 }
 

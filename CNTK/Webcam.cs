@@ -6,17 +6,23 @@ using System.Drawing;
 
 class Webcam
 {
-    static void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+    public int i = 0;
+    public void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
     {
         Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-        bitmap.Save(@"C:\Users\lenovo\Desktop\SIGN LANGUAGE AI\ASL Ultraleap\CNTK\assets\test\a.jpg");
+        bitmap.Save(@"C:\Users\lenovo\Desktop\SIGN LANGUAGE AI\ASL Ultraleap\CNTK\assets\neutral\" + i + ".jpg");
     }
     public void start_webcam()
     {
         FilterInfoCollection videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); 
         VideoCaptureDevice videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
-        videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
-        videoSource.Start();
+        while(true)
+        {
+            videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
+            videoSource.Start();
+            i++;
+        }
+
     }
 
     

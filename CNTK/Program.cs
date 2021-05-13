@@ -8,10 +8,20 @@ namespace CNTK
         
         static void Main(string[] args)
         {            
-            // CombineModels cm = new CombineModels();
-            // cm.GenerateWord();
-            Webcam cam = new Webcam();
-            cam.start_webcam();
+            CombineModels cm = new CombineModels();
+            cm.GenerateWord();
+
+            // HandTrainModel hm = new HandTrainModel();
+            // hm.HandModelTraining();
+
+            // LiveWebcam cam = new LiveWebcam();
+            // cam.start_webcam();
+
+            // FaceTrainModel ftm = new FaceTrainModel();
+            // ftm.FaceModelTraining();
+
+            // EmotionRecognition er = new EmotionRecognition();
+            // er.Emotion();
         }
 
     }
