@@ -22,37 +22,61 @@ class CombineModels
 
     public void GetWordFromInterpretor()
     {       
-
-        while(true)
+        try
         {
-            sli.Interpret();                
+            while(true)
+            {
+                sli.Interpret();                
+            }
+        } 
+        catch (InvalidOperationException e)
+        {
+            
         }
     }
 
     public void GetFacialExpression()
     {
-        
-        while(true)
+        try
         {
-            er.GetEmotion();
+            while(true)
+            {
+                er.GetEmotion();
+            }
+        } 
+        catch (InvalidOperationException e)
+        {
+            
         }
     }
 
     public void GetWordFromInterpretor_output()
     {
-
-        while(true)
-        {            
-            word = sli.GetWordOutput();
+        try
+        {
+            while(true)
+            {            
+                word = sli.GetWordOutput();
+            }
+        } 
+        catch (InvalidOperationException e)
+        {
+            
         }
     }
 
     public void GetFacialExpression_output()
     {
-
-        while(true)
+        try
         {
-            emotion = er.GetEmotionOutput();
+            while(true)
+            {
+                emotion = er.GetEmotionOutput();
+            }
+        } 
+        catch (InvalidOperationException e)
+        {
+            
         }
     }
 
