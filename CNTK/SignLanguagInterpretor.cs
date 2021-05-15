@@ -14,9 +14,9 @@ class SignLanguagInterpretor
     {
         Console.WriteLine("STARTING SIGN LANGUAGE INTERPRETER");
 
-        var projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../"));
-        var workspaceRelativePath = Path.Combine(projectDirectory, "workspace");
-        var unityScreenshotsPath = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/Assets/Plugins/LeapMotion/Core/Screenshots/data_input";
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\Assets\Plugins\LeapMotion\Core\Screenshots\data_input");
+        string unityScreenshotsPath = Path.GetFullPath(sFile);
 
         MLContext mlContext = new MLContext();
         

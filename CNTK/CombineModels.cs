@@ -5,7 +5,7 @@ using System.Threading;
 class CombineModels
 {
     string word = "TEST";
-    string emotion = "happy";
+    string emotion = "TEST";
     SignLanguagInterpretor sli = new SignLanguagInterpretor();
     EmotionRecognition er = new EmotionRecognition();
 

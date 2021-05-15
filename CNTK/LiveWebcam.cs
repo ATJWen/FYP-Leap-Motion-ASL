@@ -8,8 +8,11 @@ class LiveWebcam
 {
     public void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
     {
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\assets\screenshot");
+        string faceImagePath = Path.GetFullPath(sFile);
         Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-        bitmap.Save(@"C:\Users\lenovo\Desktop\SIGN LANGUAGE AI\ASL Ultraleap\CNTK\assets\screenshot\4290000.jpg");
+        bitmap.Save(faceImagePath);
     }
     public void start_webcam()
     {

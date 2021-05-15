@@ -13,9 +13,9 @@ class HandTrainModel
     {
         Console.WriteLine("STARTING TRAINING");
 
-        var projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../"));
-        var workspaceRelativePath = Path.Combine(projectDirectory, "workspace");
-        var unityScreenshotsPathForTraining = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/Assets/Plugins/LeapMotion/Core/Screenshots/Training";
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\Assets\Plugins\LeapMotion\Core\Screenshots\Training");
+        string unityScreenshotsPathForTraining = Path.GetFullPath(sFile);
 
         MLContext mlContext = new MLContext();
 

@@ -14,9 +14,9 @@ class EmotionRecognition
     {
         Console.WriteLine("STARTING EMOTION INTERPRETER");
 
-        var projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../"));
-        var workspaceRelativePath = Path.Combine(projectDirectory, "workspace");
-        var faceImagePath = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/CNTK/assets/screenshot";
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\assets\screenshot");
+        string faceImagePath = Path.GetFullPath(sFile);
 
         MLContext mlContext = new MLContext();
         

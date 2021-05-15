@@ -9,8 +9,11 @@ class Webcam
     public int i = 0;
     public void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
     {
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\assets\neutral");
+        string faceImagePath = Path.GetFullPath(sFile);
         Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-        bitmap.Save(@"C:\Users\lenovo\Desktop\SIGN LANGUAGE AI\ASL Ultraleap\CNTK\assets\neutral\" + i + ".jpg");
+        bitmap.Save(faceImagePath + i + ".jpg");
     }
     public void start_webcam()
     {

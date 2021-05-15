@@ -13,9 +13,9 @@ class FaceTrainModel
     {
         Console.WriteLine("STARTING TRAINING");
 
-        var projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../"));
-        var workspaceRelativePath = Path.Combine(projectDirectory, "workspace");
-        var faceImagePath = "C:/Users/lenovo/Desktop/SIGN LANGUAGE AI/ASL Ultraleap/CNTK/assets/";
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;            
+        string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\assets");
+        string faceImagePath = Path.GetFullPath(sFile);
 
         MLContext mlContext = new MLContext();
 
